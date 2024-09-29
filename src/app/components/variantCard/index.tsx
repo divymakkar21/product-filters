@@ -1,7 +1,15 @@
 import Image from "next/image";
 import { Plus } from "lucide-react";
+import { Variant } from "@/app/utils/types";
 
-export default function VariantCard({ variant, addImage, filterIndex, variantIndex }: any) {
+interface VariantCardProps {
+  variant: Variant;
+  addImage: (imageUrl: string, filterIndex: number, variantIndex: number) => void;
+  filterIndex: number;
+  variantIndex: number;
+}
+
+export default function VariantCard({ variant, addImage, filterIndex, variantIndex }: VariantCardProps) {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {

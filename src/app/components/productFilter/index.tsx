@@ -1,7 +1,13 @@
+import { Filter } from "@/app/utils/types";
 import { GripVertical, Trash } from "lucide-react";
 import { useState } from "react";
 
-export default function ProductFilter({ filter, index, deleteFilter }: any) {
+type ProductFilterProps = {
+  filter: Filter
+  index: number
+  deleteFilter: (index: number) => void
+}
+export default function ProductFilter({ filter, index, deleteFilter }: ProductFilterProps) {
   const [hover, setHover] = useState(false);
   const onHover = () => {
     setHover(true);

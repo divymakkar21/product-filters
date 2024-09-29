@@ -4,7 +4,7 @@ import ProductFilter from "../productFilter";
 import VariantCard from "../variantCard";
 import { useState } from "react";
 import { defaultFilters } from "@/app/utils/constants";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 
 export default function ProductTable() {
   const [filters, setFilters] = useState(defaultFilters);
@@ -39,7 +39,7 @@ export default function ProductTable() {
     ]);
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return;
     }
@@ -82,7 +82,7 @@ export default function ProductTable() {
       <div className="bg-[#F9FBFC] rounded-lg shadow">
         <div className="flex gap-4 p-4">
           <div className="font-semibold basis-1/3 text-gray-600 text-center">Product Filter</div>
-          {filters[0].variants?.map((variant, index) => (<div className="w-[200px] font-semibold text-gray-600 text-center">{index === 0 ? 'Primary Variant' : `Variant ${index }`}</div>))}
+          {filters[0].variants?.map((variant, index) => (<div key={index} className="w-[200px] font-semibold text-gray-600 text-center">{index === 0 ? 'Primary Variant' : `Variant ${index }`}</div>))}
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="filters">
